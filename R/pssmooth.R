@@ -1202,6 +1202,10 @@ plotMCEPcurve <- function(object, confLevel=0.95, hingePoint=NULL, title=NULL, x
   if (!is.null(hingePoint)){ legend("bottomright", paste0("Hinge Point = ", round(hingePoint,2),"  "), cex=cexLegend, bty="n") }
 }
 
+# patched copy of np:::npcdensbw.formula, kept internal (not registered) so that it is found by S3 dispatch only
+# from within the pssmooth namespace and does not overwrite np's registered method
+#' @exportS3Method NULL
+#' @noRd
 npcdensbw.formula <- function (formula, data, subset, na.action, call, ...){
   orig.class <- if (missing(data))
     sapply(eval(attr(terms(formula), "variables"), environment(formula)),
