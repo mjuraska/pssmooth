@@ -8,7 +8,6 @@ Description: Implements estimation and testing procedures for evaluating an inte
 License: GPL (>= 3)
 URL: https://github.com/mjuraska/pssmooth
 Encoding: UTF-8
-LazyData: true
 Imports: graphics,
     stats,
     np,
