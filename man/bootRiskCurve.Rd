@@ -113,7 +113,7 @@ out <- bootRiskCurve(formula=Y ~ S + factor(X), bsm="Sb", tx="Z", data=data,
 \donttest{
 # alternatively, to save the .RData output file (no '<-' needed):
 bootRiskCurve(formula=Y ~ S + factor(X), bsm="Sb", tx="Z", data=data,
-              psGrid=grid, iter=1, seed=10, saveFile="out.RData", saveDir="./")
+              psGrid=grid, iter=1, seed=10, saveFile="out.RData", saveDir=tempdir())
 }
 
 }

@@ -4,8 +4,6 @@ NULL
 NULL
 #' @import utils
 NULL
-#' @importFrom osDesign tps
-NULL
 #' @import np
 NULL
 #' @import chngpt
@@ -266,7 +264,7 @@ risk <- function(s1, formula, data, data2, pstype, bsmtype, tpsFit, npcdensFit1,
 #' \donttest{
 #' # alternatively, to save the .RData output file (no '<-' needed):
 #' bootRiskCurve(formula=Y ~ S + factor(X), bsm="Sb", tx="Z", data=data,
-#'               psGrid=grid, iter=1, seed=10, saveFile="out.RData", saveDir="./")
+#'               psGrid=grid, iter=1, seed=10, saveFile="out.RData", saveDir=tempdir())
 #' }
 #'
 #' @seealso \code{\link{riskCurve}}, \code{\link{summary.riskCurve}} and \code{\link{plotMCEPcurve}}
@@ -516,7 +514,7 @@ bootRiskCurve <- function(formula, bsm, tx, data, pstype=c("continuous", "ordere
 #' measured at fixed time \eqn{t_0} after randomization, and \eqn{Y} is a binary clinical endpoint (\eqn{Y=1}, disease; \eqn{Y=0}, no disease) measured after \eqn{t_0}. The
 #' estimator employs the generalized product kernel density/probability estimation method of Hall, Racine, and Li (2004) implemented in the \code{np} package. The risks
 #' \eqn{P\{Y(z)=1|S(z)=s_1,X=x\}}, \eqn{z=0,1}, where \eqn{X} is a vector of discrete baseline covariates, are estimated by fitting inverse probability-weighted logistic regression
-#' models using the \code{osDesign} package.
+#' models using the \code{tps} function adapted from the \code{osDesign} package.
 #'
 #' @param formula a formula object with the binary clinical endpoint on the left of the \code{~} operator. The first listed variable on the right must be the biomarker response
 #' at \eqn{t0} and all variables that follow, if any, are discrete baseline covariates specified in all fitted models that condition on them. Interactions and transformations
@@ -565,7 +563,7 @@ bootRiskCurve <- function(formula, bsm, tx, data, pstype=c("continuous", "ordere
 #'
 #' Hall, P., Racine, J., and Li, Q. (2004), Cross-validation and the estimation of conditional probability densities, \emph{JASA} 99(468), 1015-1026.
 #'
-#' Juraska, M., Huang, Y., and Gilbert, P. B. (2020), Inference on treatment effect modification by biomarker response in a three-phase sampling design, Biostatistics, 21(3): 545-560, \url{https://doi.org/10.1093/biostatistics/kxy074}.
+#' Juraska, M., Huang, Y., and Gilbert, P. B. (2020), Inference on treatment effect modification by biomarker response in a three-phase sampling design, Biostatistics, 21(3): 545-560, \doi{10.1093/biostatistics/kxy074}.
 #'
 #' @examples
 #' n <- 500
@@ -593,7 +591,7 @@ bootRiskCurve <- function(formula, bsm, tx, data, pstype=c("continuous", "ordere
 #' \donttest{
 #' # alternatively, to save the .RData output file (no '<-' needed):
 #' riskCurve(formula=Y ~ S + factor(X), bsm="Sb", tx="Z", data=data, saveFile="out.RData",
-#'           saveDir="./")
+#'           saveDir=tempdir())
 #' }
 #'
 #' @seealso \code{\link{bootRiskCurve}}, \code{\link{summary.riskCurve}} and \code{\link{plotMCEPcurve}}
@@ -812,7 +810,7 @@ invtContrastRiskCurve <- function(x, contrast){
 #'
 #' @return A data frame containing point and possibly interval estimates of the specified mCEP curve.
 #'
-#' @references Juraska, M., Huang, Y., and Gilbert, P. B. (2020), Inference on treatment effect modification by biomarker response in a three-phase sampling design, Biostatistics, 21(3): 545-560, \url{https://doi.org/10.1093/biostatistics/kxy074}.
+#' @references Juraska, M., Huang, Y., and Gilbert, P. B. (2020), Inference on treatment effect modification by biomarker response in a three-phase sampling design, Biostatistics, 21(3): 545-560, \doi{10.1093/biostatistics/kxy074}.
 #'
 #' @examples
 #' n <- 500
@@ -913,7 +911,7 @@ summary.riskCurve <- function(object, boot=NULL, contrast=c("te", "rr", "logrr",
 #'
 #' @return A numeric value representing the two-sided p-value from the test of either \eqn{H_0^1} or \eqn{H_0^2}.
 #'
-#' @references Juraska, M., Huang, Y., and Gilbert, P. B. (2020), Inference on treatment effect modification by biomarker response in a three-phase sampling design, Biostatistics, 21(3): 545-560, \url{https://doi.org/10.1093/biostatistics/kxy074}.
+#' @references Juraska, M., Huang, Y., and Gilbert, P. B. (2020), Inference on treatment effect modification by biomarker response in a three-phase sampling design, Biostatistics, 21(3): 545-560, \doi{10.1093/biostatistics/kxy074}.
 #'
 #' Roy, S. N. and Bose, R. C. (1953), Simultaneous condence interval estimation, \emph{The Annals of Mathematical Statistics}, 24, 513-536.
 #'
@@ -1019,7 +1017,7 @@ testConstancy <- function(object, boot, contrast=c("te", "rr", "logrr", "rd"), n
 #'
 #' @return A numeric value representing the two-sided p-value from the test of either \eqn{H_0^3} or \eqn{H_0^4}.
 #'
-#' @references Juraska, M., Huang, Y., and Gilbert, P. B. (2020), Inference on treatment effect modification by biomarker response in a three-phase sampling design, Biostatistics, 21(3): 545-560, \url{https://doi.org/10.1093/biostatistics/kxy074}.
+#' @references Juraska, M., Huang, Y., and Gilbert, P. B. (2020), Inference on treatment effect modification by biomarker response in a three-phase sampling design, Biostatistics, 21(3): 545-560, \doi{10.1093/biostatistics/kxy074}.
 #'
 #' Roy, S. N. and Bose, R. C. (1953), Simultaneous condence interval estimation, \emph{The Annals of Mathematical Statistics}, 24, 513-536.
 #'

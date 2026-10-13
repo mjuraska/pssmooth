@@ -1,12 +1,7 @@
-citHeader("To cite pssmooth in publications use:")
-
-year = "2019"
-vers = paste("R package version",meta$Version)
-
-citEntry(entry = "Manual",
-         title = paste("pssmooth:",meta$Title),
-         author = "Michal Juraska",
-         year = "2019",
-         note = vers,
-         textVersion = paste("Michal Juraska (",year,"). pssmooth: ",meta$Title,". ",vers,".", sep="")
-)
+bibentry(bibtype = "Manual",
+         header = "To cite pssmooth in publications use:",
+         title = paste("pssmooth:", meta$Title),
+         author = person("Michal", "Juraska"),
+         year = "2026",
+         note = paste("R package version", meta$Version),
+         url = "https://CRAN.R-project.org/package=pssmooth")

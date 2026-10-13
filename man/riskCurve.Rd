@@ -81,7 +81,7 @@ treatment group indicator (\eqn{Z=1}, treatment; \eqn{Z=0}, placebo), \eqn{S(z)}
 measured at fixed time \eqn{t_0} after randomization, and \eqn{Y} is a binary clinical endpoint (\eqn{Y=1}, disease; \eqn{Y=0}, no disease) measured after \eqn{t_0}. The
 estimator employs the generalized product kernel density/probability estimation method of Hall, Racine, and Li (2004) implemented in the \code{np} package. The risks
 \eqn{P\{Y(z)=1|S(z)=s_1,X=x\}}, \eqn{z=0,1}, where \eqn{X} is a vector of discrete baseline covariates, are estimated by fitting inverse probability-weighted logistic regression
-models using the \code{osDesign} package.
+models using the \code{tps} function adapted from the \code{osDesign} package.
 }
 \examples{
 n <- 500
@@ -109,7 +109,7 @@ out <- riskCurve(formula=Y ~ S + factor(X), bsm="Sb", tx="Z", data=data, psGrid=
 \donttest{
 # alternatively, to save the .RData output file (no '<-' needed):
 riskCurve(formula=Y ~ S + factor(X), bsm="Sb", tx="Z", data=data, saveFile="out.RData",
-          saveDir="./")
+          saveDir=tempdir())
 }
 
 }
@@ -118,7 +118,7 @@ Fong, Y., Huang, Y., Gilbert, P. B., and Permar, S. R. (2017), chngpt: threshold
 
 Hall, P., Racine, J., and Li, Q. (2004), Cross-validation and the estimation of conditional probability densities, \emph{JASA} 99(468), 1015-1026.
 
-Juraska, M., Huang, Y., and Gilbert, P. B. (2020), Inference on treatment effect modification by biomarker response in a three-phase sampling design, Biostatistics, 21(3): 545-560, \url{https://doi.org/10.1093/biostatistics/kxy074}.
+Juraska, M., Huang, Y., and Gilbert, P. B. (2020), Inference on treatment effect modification by biomarker response in a three-phase sampling design, Biostatistics, 21(3): 545-560, \doi{10.1093/biostatistics/kxy074}.
 }
 \seealso{
 \code{\link{bootRiskCurve}}, \code{\link{summary.riskCurve}} and \code{\link{plotMCEPcurve}}
